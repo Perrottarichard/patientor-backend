@@ -8,3 +8,5 @@ export interface Patient {
 }
 
 export type NoSocial = Omit<Patient, 'ssn'>;
+
+export type NewPatient = Omit<Patient, 'id'>;
