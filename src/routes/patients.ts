@@ -19,7 +19,12 @@ router.post('/', (req, res) => {
 });
 
 router.get('/', (_req, res) => {
-    res.send(pService.getNoSocial());
+    res.send(pService.getPublicPatient());
+});
+
+router.get('/:id', (req, res) => {
+    const id = req.params.id;
+    res.send(pService.getPatientById(id));
 });
 
 export default router;

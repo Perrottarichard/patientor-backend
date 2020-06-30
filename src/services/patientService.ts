@@ -4,13 +4,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import patientData from '../../data/patients.json';
-import { Patient, NoSocial, NewPatient, Gender } from '../types/patientType';
+import { Patient, PublicPatient, NewPatient, Gender } from '../types/patientType';
 
-const getPatients = (): Array<Patient> => {
+const getPatients = (): Array<PublicPatient> => {
     return patientData;
 };
+const getPatientById = (id: string): Patient => {
+    return patientData.find(p => p.id === id) as Patient;
+};
 
-const getNoSocial = (): NoSocial[] => {
+const getPublicPatient = (): PublicPatient[] => {
     return patientData.map(({ id, name, dateOfBirth, gender, occupation }) => ({
         id,
         name,
@@ -65,7 +68,8 @@ const toNewPatient = (object: any): NewPatient => {
         dateOfBirth: parseDateOfBirth(object.dateOfBirth),
         ssn: parseSsn(object.ssn),
         gender: parseGender(object.gender),
-        occupation: parseOccupation(object.occupation)
+        occupation: parseOccupation(object.occupation),
+        entries: []
     };
 };
 const addPatient = (patientToAdd: Patient): Patient => {
@@ -78,7 +82,8 @@ const addPatient = (patientToAdd: Patient): Patient => {
 
 export default {
     getPatients,
-    getNoSocial,
+    getPatientById,
+    getPublicPatient,
     addPatient,
     toNewPatient
 };
