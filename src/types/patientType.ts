@@ -13,23 +13,23 @@ export enum HealthCheckRating {
     "HighRisk" = 2,
     "CriticalRisk" = 3
 }
-interface Discharge {
+export interface Discharge {
     date: string;
     criteria: string;
 }
-interface SickLeave {
+export interface SickLeave {
     startDate: string;
     endDate: string;
 }
-interface HealthCheckEntry extends BaseEntry {
+export interface HealthCheckEntry extends BaseEntry {
     type: "HealthCheck";
     healthCheckRating: HealthCheckRating;
 }
-interface HospitalEntry extends BaseEntry {
+export interface HospitalEntry extends BaseEntry {
     type: "Hospital";
     discharge: Discharge;
 }
-interface OccupationalHealthcareEntry extends BaseEntry {
+export interface OccupationalHealthcareEntry extends BaseEntry {
     type: "OccupationalHealthcare";
     employerName: string;
     sickLeave?: SickLeave;
@@ -52,7 +52,10 @@ export interface Patient {
 export type PublicPatient = Omit<Patient, 'ssn' | 'entries'>;
 
 export type NewPatient = Omit<Patient, 'id'>;
-
+export type NewEntry = Omit<Entry, "id">;
+export type NewHealthCheckEntry = Omit<HealthCheckEntry, "id">;
+export type NewHospitalCheckEntry = Omit<HospitalEntry, "id">;
+export type NewOccupationalHealthcareEntry = Omit<OccupationalHealthcareEntry, "id">;
 export enum Gender {
     Male = "male",
     Female = "female",

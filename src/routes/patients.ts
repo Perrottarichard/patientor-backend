@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
@@ -11,13 +12,25 @@ router.post('/', (req, res) => {
     const id: string = shortid.generate();
     try {
         const patientToAdd = pService.toNewPatient(req.body);
-        const addedEntry = pService.addPatient({ id: id, ...patientToAdd });
-        res.json(addedEntry);
+        const addedPatient = pService.addPatient({ id: id, ...patientToAdd });
+        res.json(addedPatient);
     } catch (e) {
         res.status(400).send(e.message);
     }
 });
 
+router.post('/:id/entries', (req, res) => {
+    const patientId = req.params.id;
+    const entryId = shortid.generate();
+    try {
+        const entryToAdd = pService.toNewEntry(req.body);
+        const addedEntry = pService.addEntryForPatient(patientId, { id: entryId, ...entryToAdd });
+        res.json(addedEntry);
+    } catch (e) {
+        res.status(400).send(e.message);
+    }
+
+});
 router.get('/', (_req, res) => {
     res.send(pService.getPatients());
 });
