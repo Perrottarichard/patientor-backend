@@ -19,7 +19,7 @@ router.post('/', (req, res) => {
 });
 
 router.get('/', (_req, res) => {
-    res.send(pService.getPublicPatient());
+    res.send(pService.getPatients());
 });
 
 router.get('/:id', (req, res) => {

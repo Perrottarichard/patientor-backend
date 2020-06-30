@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import patientData from '../../data/patients.json';
+import patientData from '../patientData';
 import { Patient, PublicPatient, NewPatient, Gender } from '../types/patientType';
 
 const getPatients = (): Array<PublicPatient> => {
