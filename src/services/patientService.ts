@@ -112,8 +112,8 @@ const toNewOccupationalHealthcareCheck = (object: any): NewOccupationalHealthcar
         description: parseDescription(object.description),
         date: parseDateOfBirth(object.date),
         specialist: parseSpecialist(object.specialist),
-        sickLeave: parseSickLeave(object),
-        employerName: parseEmployerName(object),
+        sickLeave: parseSickLeave(object.sickLeave),
+        employerName: parseEmployerName(object.employerName),
         diagnosisCodes: object.diagnosisCodes
     };
 };
@@ -133,7 +133,7 @@ const toNewHospitalCheck = (object: any): NewHospitalCheckEntry => {
         description: parseDescription(object.description),
         date: parseDateOfBirth(object.date),
         specialist: parseSpecialist(object.specialist),
-        discharge: parseDischarge(object),
+        discharge: parseDischarge(object.discharge),
         diagnosisCodes: object.diagnosisCodes
     };
 };
