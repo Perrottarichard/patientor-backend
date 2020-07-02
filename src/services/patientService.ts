@@ -90,12 +90,6 @@ const parseSpecialist = (specialist: any): string => {
     }
     return specialist;
 };
-// const parseType = (object: any): Entry => {
-//     if (!object.type || !isString(object.type)) {
-//         throw new Error(`Incorrect or missing type: ${object.type}`);
-//     }
-//     return object.type;
-// };
 const parseDescription = (desc: any): string => {
     if (!desc || !isString(desc)) {
         throw new Error(`Incorrect or missing description: ${desc}`);
@@ -119,7 +113,8 @@ const toNewOccupationalHealthcareCheck = (object: any): NewOccupationalHealthcar
         date: parseDateOfBirth(object.date),
         specialist: parseSpecialist(object.specialist),
         sickLeave: parseSickLeave(object),
-        employerName: parseEmployerName(object)
+        employerName: parseEmployerName(object),
+        diagnosisCodes: object.diagnosisCodes
     };
 };
 const toNewHealthCheck = (object: any): NewHealthCheckEntry => {
@@ -128,7 +123,8 @@ const toNewHealthCheck = (object: any): NewHealthCheckEntry => {
         description: parseDescription(object.description),
         date: parseDateOfBirth(object.date),
         specialist: parseSpecialist(object.specialist),
-        healthCheckRating: parseHealthCheckRating(object.healthCheckRating)
+        healthCheckRating: parseHealthCheckRating(object.healthCheckRating),
+        diagnosisCodes: object.diagnosisCodes
     };
 };
 const toNewHospitalCheck = (object: any): NewHospitalCheckEntry => {
@@ -137,7 +133,8 @@ const toNewHospitalCheck = (object: any): NewHospitalCheckEntry => {
         description: parseDescription(object.description),
         date: parseDateOfBirth(object.date),
         specialist: parseSpecialist(object.specialist),
-        discharge: parseDischarge(object)
+        discharge: parseDischarge(object),
+        diagnosisCodes: object.diagnosisCodes
     };
 };
 const toNewEntry = (object: any): NewEntry => {
